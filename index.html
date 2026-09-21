@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n>PORPONÊS | Curso de língua japonesa online</title>
+  <meta name="description" content="Aulas de japonês online com professora nativa. Do hiragana ao JLPT, cursos para viagem, crianças e conversação." data-i18n-attr="content">
+  <meta name="theme-color" content="#f7f4ee">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    /* Aplica tema e idioma salvos antes da primeira pintura (evita "piscar").
+       Preferências: localStorage "porpones-theme" (light/dark) e "porpones-lang" (pt/en/ja). */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var t = localStorage.getItem("porpones-theme");
+        if (t !== "dark" && t !== "light") {
+          t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        d.setAttribute("data-theme", t);
+        var l = localStorage.getItem("porpones-lang");
+        var q = /[?&]lang=(pt|en|ja)\b/.exec(location.search);
+        if (q) l = q[1];
+        if (l === "en" || l === "ja") {
+          d.setAttribute("lang", l);
+          d.classList.add("i18n-pending");
+          setTimeout(function () { d.classList.remove("i18n-pending"); }, 1500);
+        }
+      } catch (e) {
+        d.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo" data-i18n>Ir para o conteúdo</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html" aria-label="PORPONÊS, página inicial" data-i18n-attr="aria-label">
+      <img class="brand__logo" src="assets/img/logo.png" alt="PORPONÊS" width="44" height="44" data-logo data-logo-dark="assets/img/logo-white.png">
+      <span class="brand__text">
+        <span class="brand__name">PORPONÊS</span>
+        <span class="brand__tagline" data-i18n>Japonês online</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Navegação principal" data-i18n-attr="aria-label">
+      <div class="nav__head">
+        <span class="nav__title" data-i18n>Menu</span>
+        <button class="icon-btn nav__close" type="button" aria-label="Fechar menu" data-i18n-attr="aria-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link is-active" href="index.html" aria-current="page" data-i18n>Home</a></li>
+        <li class="nav__item"><a class="nav__link" href="cursos.html" data-i18n>Cursos</a></li>
+        <li class="nav__item nav__item--has-sub">
+          <button class="nav__sub-toggle" type="button" aria-expanded="false" aria-controls="sub-viagem">
+            <span data-i18n>Viagem</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav__sub-wrap">
+            <ul class="nav__sub" id="sub-viagem">
+              <li><a class="nav__sub-link" href="viagem.html" data-i18n>Visão geral</a></li>
+              <li><a class="nav__sub-link" href="viagem-tokyo.html" data-i18n>Arredores de Tóquio</a></li>
+              <li><a class="nav__sub-link" href="viagem-osaka.html" data-i18n>Arredores de Osaka</a></li>
+              <li><a class="nav__sub-link" href="viagem-outras-cidades.html" data-i18n>Outras cidades</a></li>
+              <li><a class="nav__sub-link" href="viagem-experiencias.html" data-i18n>Experiências culturais</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav__item nav__item--has-sub">
+          <button class="nav__sub-toggle" type="button" aria-expanded="false" aria-controls="sub-intercambio">
+            <span data-i18n>Intercâmbio</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav__sub-wrap">
+            <ul class="nav__sub" id="sub-intercambio">
+              <li><a class="nav__sub-link" href="intercambio.html" data-i18n>Visão geral</a></li>
+              <li><a class="nav__sub-link" href="escola-de-idioma.html" data-i18n>Escolas de idioma</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav__item"><a class="nav__link" href="jlpt.html" data-i18n>JLPT</a></li>
+        <li class="nav__item"><a class="nav__link" href="working-holiday.html" data-i18n>Working Holiday</a></li>
+        <li class="nav__item"><a class="nav__link" href="depoimentos.html" data-i18n>Depoimentos</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a class="btn btn--whatsapp" href="#" data-whatsapp-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span data-i18n>Fale conosco</span></a>
+      </div>
+    </nav>
+
+    <div class="header-tools">
+      <div class="settings">
+        <button class="icon-btn settings__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu" aria-label="Configurações" data-i18n-attr="aria-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
+        <div class="settings__menu" id="settings-menu" role="group" aria-label="Configurações" data-i18n-attr="aria-label">
+          <span class="settings__title" data-i18n>Configurações</span>
+          <div class="settings__row">
+            <span class="settings__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></svg></span>
+            <span class="settings__text"><span class="settings__name" data-i18n>Idioma</span></span>
+            <div class="seg" role="radiogroup" aria-label="Idioma" data-i18n-attr="aria-label">
+              <button class="seg__btn lang-option" type="button" role="radio" aria-checked="true" data-lang="pt" lang="pt-BR" title="Português">PT</button>
+              <button class="seg__btn lang-option" type="button" role="radio" aria-checked="false" data-lang="en" lang="en" title="English">EN</button>
+              <button class="seg__btn lang-option" type="button" role="radio" aria-checked="false" data-lang="ja" lang="ja" title="日本語">日本語</button>
+            </div>
+          </div>
+          <button class="settings__row settings__toggle theme-toggle" type="button" aria-pressed="false">
+            <span class="settings__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="theme-toggle__sun" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><g class="theme-toggle__rays"><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></g><path class="theme-toggle__moon" fill="currentColor" d="M20.6 14.3A8.6 8.6 0 0 1 9.7 3.4a8.6 8.6 0 1 0 10.9 10.9z"/></svg></span>
+            <span class="settings__text"><span class="settings__name" data-i18n>Tema</span><span class="settings__state"><span class="theme-toggle__state theme-toggle__state--light" data-i18n>Claro</span><span class="theme-toggle__state theme-toggle__state--dark" data-i18n>Escuro</span></span></span>
+            <span class="switch" aria-hidden="true"></span>
+          </button>
+          <button class="settings__row settings__toggle sound-toggle" type="button" aria-pressed="true">
+            <span class="settings__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.4l4.6 4v-13l-4.6 4z"/><path class="sound-toggle__wave" d="M15.5 9.6a3.4 3.4 0 0 1 0 4.8"/><path class="sound-toggle__wave" d="M18.2 7a7.2 7.2 0 0 1 0 10"/><path class="sound-toggle__slash" d="M4 4l16 16"/></svg></span>
+            <span class="settings__text"><span class="settings__name" data-i18n>Sons da interface</span><span class="settings__state"><span class="sound-toggle__label sound-toggle__label--on" data-i18n>Ligados</span><span class="sound-toggle__label sound-toggle__label--off" data-i18n>Desligados</span></span></span>
+            <span class="switch" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <a class="btn btn--whatsapp btn--sm header-cta" href="#" data-whatsapp-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span data-i18n>Fale conosco</span></a>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu" data-i18n-attr="aria-label">
+        <span class="icon-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+        <span class="icon-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+<!-- HERO -->
+<section class="hero pattern-seigaiha">
+  <div class="container">
+    <div class="hero__inner">
+      <div>
+        <img class="hero__logo" src="assets/img/logo.png" alt="" width="96" height="96" data-logo data-logo-dark="assets/img/logo-white.png">
+        <span class="hero__jp" lang="ja">日本語 オンライン</span>
+        <h1 data-i18n>Aprenda japonês com quem vive a cultura japonesa.</h1>
+        <p class="hero__lead" data-i18n>O PORPONÊS é um curso de língua japonesa online, com professora nativa. Do hiragana ao JLPT, de uma viagem ao Japão a um intercâmbio: aqui você aprende o idioma e a cultura, no seu ritmo.</p>
+        <div class="btn-group">
+          <a class="btn btn--whatsapp" href="#" data-whatsapp-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span data-i18n>Fale no WhatsApp</span></a>
+          <a class="btn btn--ghost" href="cursos.html"><span data-i18n>Ver cursos</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="hero__meta">
+          <div data-i18n><strong>Online</strong>aulas ao vivo, ao seu ritmo</div>
+          <div data-i18n><strong>Individual</strong>ou em grupo, conforme o curso</div>
+          <div data-i18n><strong>Seg. a sex.</strong>das 8h às 22h (Brasília)</div>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="figure figure--trio">
+          <img class="illus illus--side illus--side-left" src="assets/img/illus/home-hero-man.png" alt="" width="537" height="813" decoding="async" loading="lazy">
+          <img class="illus illus--main" src="assets/img/illus/home-hero.png" alt="" width="686" height="720" decoding="async" fetchpriority="high">
+          <img class="illus illus--side illus--side-right" src="assets/img/illus/home-hero-woman.png" alt="" width="537" height="813" decoding="async" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section section--white section--bordered">
+  <div class="container">
+    <div class="grid grid--2" style="align-items:center">
+      <div>
+        <p class="eyebrow" data-i18n>Sobre o PORPONÊS <span lang="ja">ポルポネス</span></p>
+        <h2 data-i18n>Uma escola de japonês online, feita por uma professora japonesa.</h2>
+        <div class="prose">
+          <p data-i18n>O PORPONÊS é um curso de língua japonesa online administrado pela Maki, professora nativa. As aulas partem do básico (as letras hiragana e katakana) e avançam por materiais didáticos originais até os níveis intermediário e avançado.</p>
+          <p data-i18n>Mais do que gramática e vocabulário, as aulas trazem a cultura japonesa para perto: você tira dúvidas a qualquer momento, por menores que sejam, e aprende de forma leve e divertida.</p>
+        </div>
+      </div>
+      <div class="figure figure--sm figure--paper">
+        <img class="illus" src="assets/img/illus/home-teacher.png" alt="" width="552" height="720" decoding="async" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-i18n>Cursos <span lang="ja">コース</span></p>
+      <h2 data-i18n>Um curso para cada objetivo</h2>
+      <p data-i18n>Quer ler mangá no original, viajar com autonomia ou passar no JLPT? Escolha o caminho que combina com você.</p>
+    </div>
+    <div class="grid grid--3">
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg></span>
+        <h3 class="card__title" data-i18n>Padrão</h3>
+        <p class="card__text" data-i18n>Do hiragana e katakana até o nível intermediário e avançado, com materiais didáticos originais. Alcança o N5 e o N4 do JLPT ao longo das apostilas A a D.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 300 a R$ 500/mês</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.5 13.5L3 11l1-2 7.5 1.5L17 4.5a2 2 0 0 1 2.5 2.5L13.5 13.5 15 21l-2 1-2.5-7.5z"/></svg></span>
+        <h3 class="card__title" data-i18n>Para Viagem</h3>
+        <p class="card__text" data-i18n>Expressões essenciais para a viagem, cultura japonesa e pontos turísticos, sem precisar aprender a escrita. 16 aulas em cerca de 3 meses.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 600 (16 aulas)</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7" r="3.5"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/><path d="M9 4.5c1-1.5 5-1.5 6 0"/></svg></span>
+        <h3 class="card__title" data-i18n>Crianças</h3>
+        <p class="card__text" data-i18n>Para crianças de 5 a 12 anos: números, animais, objetos e expressões, aprendidos com jogos e músicas, no ritmo de cada criança.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 200/mês</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></span>
+        <h3 class="card__title" data-i18n>Preparatório para JLPT</h3>
+        <p class="card__text" data-i18n>Nos 3 meses antes da prova do Teste de Proficiência em Língua Japonesa, realizada duas vezes por ano.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 300 a R$ 500/mês</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/></svg></span>
+        <h3 class="card__title" data-i18n>Conversação</h3>
+        <p class="card__text" data-i18n>Prática só em japonês com professora nativa. Para quem já estudou e quer falar, ou testar o próprio nível.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 30 (1 aula)</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+      <article class="card">
+        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3c5 0 9 3.2 9 7.2S17 17.4 12 17.4c-.8 0-1.6-.1-2.3-.2L5 20l1.2-3.6C4.2 15 3 12.7 3 10.2 3 6.2 7 3 12 3z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg></span>
+        <h3 class="card__title" data-i18n>Minicurso padrão</h3>
+        <p class="card__text" data-i18n>Expressões da conversa cotidiana, formais e informais, sem aprender a escrita. Apenas 8 aulas.</p>
+        <p class="card__meta" style="border-top:0;padding-top:0" data-i18n><strong style="color:var(--color-ink)">R$ 300 (8 aulas)</strong></p>
+        <p class="card__footer"><a class="link-arrow" href="cursos.html"><span data-i18n>Ver detalhes</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+      </article>
+    </div>
+    <p style="margin-top:2rem"><a class="btn btn--primary" href="cursos.html"><span data-i18n>Ver todos os cursos e valores</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONAM AS AULAS -->
+<section class="section section--white section--bordered">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-i18n>Como funciona <span lang="ja">レッスンについて</span></p>
+      <h2 data-i18n>Aulas japonesas online, individuais</h2>
+    </div>
+    <div class="grid grid--2" style="align-items:center">
+      <div class="figure figure--sm">
+        <img class="illus" src="assets/img/illus/home-online.png" alt="" width="720" height="629" decoding="async" loading="lazy">
+      </div>
+      <ul class="feature-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><div><strong data-i18n>100% online</strong><span data-i18n>As aulas acontecem por videochamada. É necessário ter <strong>câmera e microfone</strong> para participar.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><div><strong data-i18n>Aulas individuais</strong><span data-i18n>Atenção total ao seu ritmo e às suas dúvidas. Aulas em grupo também estão disponíveis dependendo do curso e da situação.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><strong data-i18n>Horário flexível</strong><span data-i18n>De segunda a sexta, das 8h às 22h no horário do Brasil. Aulas em horário extra têm acréscimo de 50% no valor do curso.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DESCONTOS -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid--2" style="align-items:start">
+      <div>
+        <div class="section__head" style="margin-bottom:0">
+          <p class="eyebrow" data-i18n>Descontos <span lang="ja">割引</span></p>
+          <h2 data-i18n>Estude em família, indique amigos</h2>
+          <p data-i18n>Condições especiais para irmãos e para quem traz novos alunos ao PORPONÊS.</p>
+        </div>
+        <div class="figure figure--sm figure--paper" style="margin-top:2rem">
+          <img class="illus" src="assets/img/illus/home-siblings.png" alt="" width="692" height="720" decoding="async" loading="lazy">
+        </div>
+      </div>
+      <ul class="feature-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4.5-6.2"/></svg><div data-i18n><strong>Irmãos no mesmo nível, na mesma aula</strong>Se os irmãos estiverem no mesmo nível e tiverem aulas ao mesmo tempo em um computador, eles só precisarão pagar por um aluno.</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg><div data-i18n><strong>Irmãos em horários diferentes: 10% de desconto</strong>Quando os irmãos fazem aulas particulares em horários diferentes, o primeiro filho paga o preço normal e o segundo filho recebe um desconto de 10%.</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></svg><div data-i18n><strong>Indicação: 20% na próxima mensalidade</strong>Se um aluno regularmente matriculado em curso padrão indicar outra pessoa para que também se matricule em curso padrão na PORPONÊS, o aluno que fez a indicação receberá um desconto de 20% na mensalidade do próximo mês.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS (prévia) -->
+<section class="section section--white section--bordered">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <p class="eyebrow" data-i18n>Depoimentos <span lang="ja">生徒の声</span></p>
+      <h2 data-i18n>O que dizem os alunos</h2>
+    </div>
+    <!-- ===================================================================
+  ATENÇÃO: os depoimentos abaixo são PLACEHOLDERS de exemplo,
+  escritos para fins de demonstração de layout.
+  Substituir pelos depoimentos reais de alunos antes de publicar o site.
+  (Remova também o selo visual "exemplo", classe .badge--dev, de cada card.)
+=================================================================== -->
+    <div class="grid grid--3">
+<article class="card testimonial">
+  <span class="badge badge--dev" title="Depoimento de exemplo: substituir pelo real" data-i18n data-i18n-attr="title">exemplo</span>
+  <blockquote class="testimonial__quote"><p data-i18n>Eu já tinha tentado aprender japonês sozinha e sempre travava no hiragana. Com a Maki, em dois meses eu já lia e escrevia as duas escritas, e o jeito dela de explicar a gramática com exemplos do dia a dia faz tudo parecer simples.</p></blockquote>
+  <div class="testimonial__author">
+    <div class="img-placeholder img-placeholder--avatar" style="aspect-ratio: 1/1;" title="Foto de Nicole S. (avatar 1:1, mín. 200×200px)" role="img" aria-label="Foto de Nicole S. (avatar 1:1, mín. 200×200px)" data-i18n-attr="aria-label title">
+  <span class="img-placeholder__label" data-i18n>Foto de Nicole S. (avatar 1:1, mín. 200×200px)</span>
+</div>
+    <div>
+      <span class="testimonial__name">Nicole S.</span>
+      <span class="testimonial__tag" data-i18n>Curso Padrão</span>
+    </div>
+  </div>
+</article>
+<article class="card testimonial">
+  <span class="badge badge--dev" title="Depoimento de exemplo: substituir pelo real" data-i18n data-i18n-attr="title">exemplo</span>
+  <blockquote class="testimonial__quote"><p data-i18n>Fiz o preparatório nos três meses antes da prova e passei no N4 de primeira. As aulas foram direto ao ponto: simulados, revisão das dúvidas e muita leitura. Recomendo para quem quer um resultado concreto.</p></blockquote>
+  <div class="testimonial__author">
+    <div class="img-placeholder img-placeholder--avatar" style="aspect-ratio: 1/1;" title="Foto de Rafael M. (avatar 1:1, mín. 200×200px)" role="img" aria-label="Foto de Rafael M. (avatar 1:1, mín. 200×200px)" data-i18n-attr="aria-label title">
+  <span class="img-placeholder__label" data-i18n>Foto de Rafael M. (avatar 1:1, mín. 200×200px)</span>
+</div>
+    <div>
+      <span class="testimonial__name">Rafael M.</span>
+      <span class="testimonial__tag" data-i18n>Preparatório para JLPT</span>
+    </div>
+  </div>
+</article>
+<article class="card testimonial">
+  <span class="badge badge--dev" title="Depoimento de exemplo: substituir pelo real" data-i18n data-i18n-attr="title">exemplo</span>
+  <blockquote class="testimonial__quote"><p data-i18n>Fiz o curso para viagem antes de passar 20 dias no Japão. Consegui pedir comida, perguntar caminhos e até conversar um pouco com a dona do ryokan. As dicas de cultura e etiqueta valeram tanto quanto o idioma.</p></blockquote>
+  <div class="testimonial__author">
+    <div class="img-placeholder img-placeholder--avatar" style="aspect-ratio: 1/1;" title="Foto de Camila T. (avatar 1:1, mín. 200×200px)" role="img" aria-label="Foto de Camila T. (avatar 1:1, mín. 200×200px)" data-i18n-attr="aria-label title">
+  <span class="img-placeholder__label" data-i18n>Foto de Camila T. (avatar 1:1, mín. 200×200px)</span>
+</div>
+    <div>
+      <span class="testimonial__name">Camila T.</span>
+      <span class="testimonial__tag" data-i18n>Curso Para Viagem</span>
+    </div>
+  </div>
+</article>
+    </div>
+    <p class="text-center" style="margin-top:2rem"><a class="link-arrow" href="depoimentos.html"><span data-i18n>Ver todos os depoimentos</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="cta-block cta-block--ink cta-block--illus">
+      <div class="cta-block__figure figure figure--xs">
+        <img class="illus" src="assets/img/illus/cta-phone.png" alt="" width="504" height="720" decoding="async" loading="lazy">
+      </div>
+      <div>
+        <span class="cta-block__jp" lang="ja">お気軽にどうぞ</span>
+        <h2 data-i18n>Vamos conversar?</h2>
+        <p data-i18n>Tire suas dúvidas sobre cursos, horários e valores direto com a professora. Sem compromisso.</p>
+        <div class="btn-group">
+          <a class="btn btn--whatsapp" href="#" data-whatsapp-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span data-i18n>Falar no WhatsApp</span></a>
+        <a class="btn btn--light" href="cursos.html" data-i18n>Ver cursos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="PORPONÊS, página inicial" data-i18n-attr="aria-label">
+          <img class="brand__logo" src="assets/img/logo-white.png" alt="PORPONÊS" width="44" height="44" data-logo>
+          <span class="brand__text">
+            <span class="brand__name">PORPONÊS</span>
+            <span class="brand__tagline" data-i18n>Curso de língua japonesa online</span>
+          </span>
+        </a>
+        <p class="site-footer__about" data-i18n>Aulas de japonês online com professora nativa, do hiragana ao JLPT, e um pé no Japão.</p>
+        <div class="social" style="margin-top:1.25rem">
+          <a href="https://www.youtube.com/channel/UCExkZOgnUnITbI4Hg4xWzkQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          <a href="https://www.facebook.com/maki.sousa.7/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.4v3.2h2.8V22h3.3z"/></svg></a>
+          <a href="https://www.instagram.com/porponesmaki/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+        <a class="btn btn--whatsapp btn--sm" href="#" data-whatsapp-link><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg><span data-i18n>Fale conosco no WhatsApp</span></a>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title" data-i18n>A escola</h2>
+        <ul class="site-footer__links">
+          <li><a href="index.html" data-i18n>Home</a></li>
+          <li><a href="cursos.html" data-i18n>Cursos</a></li>
+          <li><a href="jlpt.html" data-i18n>JLPT</a></li>
+          <li><a href="working-holiday.html" data-i18n>Working Holiday</a></li>
+          <li><a href="depoimentos.html" data-i18n>Depoimentos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title" data-i18n>Viagem</h2>
+        <ul class="site-footer__links">
+          <li><a href="viagem.html" data-i18n>Planejando a viagem</a></li>
+          <li><a href="viagem-tokyo.html" data-i18n>Arredores de Tóquio</a></li>
+          <li><a href="viagem-osaka.html" data-i18n>Arredores de Osaka</a></li>
+          <li><a href="viagem-outras-cidades.html" data-i18n>Outras cidades</a></li>
+          <li><a href="viagem-experiencias.html" data-i18n>Experiências culturais</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__title" data-i18n>Intercâmbio</h2>
+        <ul class="site-footer__links">
+          <li><a href="intercambio.html" data-i18n>Opções de intercâmbio</a></li>
+          <li><a href="escola-de-idioma.html" data-i18n>Escolas de idioma</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>&copy; <span data-year>2026</span> PORPONÊS. <span data-i18n>Curso de língua japonesa online. Todos os direitos reservados.</span></span>
+      <span data-i18n>Aulas de segunda a sexta, das 8h às 22h (horário de Brasília).</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
