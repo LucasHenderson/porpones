@@ -40,7 +40,7 @@ window.PORPONES_TRANSLATIONS = {
   "Escolas de idioma": { en: "Language schools", ja: "日本語学校" },
   "JLPT": { en: "JLPT", ja: "JLPT" },
   "Working Holiday": { en: "Working Holiday", ja: "ワーキングホリデー" },
-  "Depoimentos": { en: "Testimonials", ja: "生徒の声" },
+  "Quiz": { en: "Quiz", ja: "クイズ" },
   "Configurações": { en: "Settings", ja: "設定" },
   "Tema": { en: "Theme", ja: "テーマ" },
   "Claro": { en: "Light", ja: "ライト" },
@@ -191,7 +191,14 @@ window.PORPONES_TRANSLATIONS = {
   },
   "Depoimentos <span lang=\"ja\">生徒の声</span>": { en: "Testimonials <span lang=\"ja\">生徒の声</span>", ja: "生徒の声" },
   "O que dizem os alunos": { en: "What our students say", ja: "生徒の皆さんの声" },
-  "Ver todos os depoimentos": { en: "See all testimonials", ja: "すべての声を見る" },
+  "Depoimentos de alunos": { en: "Student testimonials", ja: "生徒の声" },
+  "Depoimentos: use as setas do teclado para navegar": {
+    en: "Testimonials: use the arrow keys to navigate",
+    ja: "生徒の声：矢印キーで移動できます"
+  },
+  "Depoimentos anteriores": { en: "Previous testimonials", ja: "前の声" },
+  "Próximos depoimentos": { en: "Next testimonials", ja: "次の声" },
+  "Escolher depoimento": { en: "Choose a testimonial", ja: "声を選ぶ" },
   "Vamos conversar?": { en: "Shall we talk?", ja: "お気軽にご相談ください" },
   "Tire suas dúvidas sobre cursos, horários e valores direto com a professora. Sem compromisso.": {
     en: "Ask the teacher directly about courses, schedules and prices. No commitment.",
@@ -324,17 +331,8 @@ window.PORPONES_TRANSLATIONS = {
   },
 
   /* ------------------------------------------------------------------------
-     Depoimentos (depoimentos.html) e prévia na home
+     Depoimentos (carrossel na home)
      ------------------------------------------------------------------------ */
-  "Depoimentos | PORPONÊS": { en: "Testimonials | PORPONÊS", ja: "生徒の声 | PORPONÊS" },
-  "O que dizem os alunos do PORPONÊS sobre as aulas de japonês online.": {
-    en: "What PORPONÊS students say about their online Japanese lessons.",
-    ja: "PORPONÊSのオンライン日本語レッスンについて、生徒の皆さんの声。"
-  },
-  "Histórias de quem aprende japonês no PORPONÊS: de quem começou do zero a quem já viajou ou passou no JLPT.": {
-    en: "Stories from people learning Japanese at PORPONÊS: from those who started from scratch to those who have traveled to Japan or passed the JLPT.",
-    ja: "PORPONÊSで日本語を学ぶ人たちのストーリー。ゼロから始めた人から、日本を旅した人、JLPTに合格した人まで。"
-  },
   "Depoimento de exemplo: substituir pelo real": { en: "Sample testimonial: replace with a real one", ja: "サンプルの声：実際のものに差し替えてください" },
   "exemplo": { en: "sample", ja: "サンプル" },
   "Eu já tinha tentado aprender japonês sozinha e sempre travava no hiragana. Com a Maki, em dois meses eu já lia e escrevia as duas escritas, e o jeito dela de explicar a gramática com exemplos do dia a dia faz tudo parecer simples.": {
@@ -371,13 +369,43 @@ window.PORPONES_TRANSLATIONS = {
     ja: "大学で日本語を勉強しましたが、練習する相手がいませんでした。ネイティブ講師との会話レッスンで、話す自信を取り戻しました。テーマは自分で選べるので、気軽に続けられます。"
   },
   "Foto de Juliana K. (avatar 1:1, mín. 200×200px)": { en: "Photo of Juliana K. (avatar 1:1, min. 200×200px)", ja: "Juliana K.さんの写真（アバター1:1、最小200×200px）" },
-  "Você também é aluno do PORPONÊS?": { en: "Are you a PORPONÊS student too?", ja: "あなたもPORPONÊSの生徒ですか？" },
-  "Envie seu depoimento pelo WhatsApp e talvez ele apareça aqui!": { en: "Send us your testimonial on WhatsApp and it might appear here!", ja: "WhatsAppであなたの声を送ってください。ここに掲載されるかもしれません！" },
-  "Olá! Sou aluno(a) do PORPONÊS e gostaria de enviar meu depoimento para o site.": {
-    en: "Hello! I'm a PORPONÊS student and would like to send my testimonial for the website.",
-    ja: "こんにちは。PORPONÊSの生徒です。サイトに掲載する感想を送りたいです。"
+
+  /* ------------------------------------------------------------------------
+     Quiz (quiz.html)
+     As perguntas do quiz NÃO ficam aqui: cada uma já traz as versões em
+     português, inglês e japonês em assets/js/quiz-perguntas.js, e os textos
+     do jogo (botões, contador, resultado) estão no objeto UI de
+     assets/js/quiz.js.
+     ------------------------------------------------------------------------ */
+  "Quiz de japonês | PORPONÊS": { en: "Japanese quiz | PORPONÊS", ja: "日本語クイズ | PORPONÊS" },
+  "Teste seus conhecimentos sobre a língua japonesa e a cultura do Japão: três perguntas por rodada, em três níveis de dificuldade.": {
+    en: "Test what you know about the Japanese language and culture: three questions per round, in three difficulty levels.",
+    ja: "日本語と日本文化の知識を試してみましょう。1回3問、難易度は3段階です。"
   },
-  "Enviar meu depoimento": { en: "Send my testimonial", ja: "感想を送る" },
+  "Quiz <span lang=\"ja\">クイズ</span>": { en: "Quiz <span lang=\"ja\">クイズ</span>", ja: "クイズ" },
+  "Teste o que você sabe sobre o Japão": { en: "Test what you know about Japan", ja: "日本のことをどれだけ知っていますか？" },
+  "Três perguntas sorteadas a cada rodada sobre a língua japonesa e a cultura do país. Escolha a dificuldade, responda e descubra na hora se acertou: no fim, a explicação de cada resposta.": {
+    en: "Three questions drawn at random each round about the Japanese language and culture. Pick a difficulty, answer, and find out straight away whether you were right: at the end, an explanation for every answer.",
+    ja: "1回のプレイで、日本語と日本文化に関する問題が3問ランダムに出題されます。難易度を選んで答えると、その場で正解が分かり、最後にすべての解説が表示されます。"
+  },
+  "Dificuldade": { en: "Difficulty", ja: "難易度" },
+  "Dificuldade do quiz": { en: "Quiz difficulty", ja: "クイズの難易度" },
+  "Fácil": { en: "Easy", ja: "やさしい" },
+  "Médio": { en: "Medium", ja: "ふつう" },
+  "Difícil": { en: "Hard", ja: "むずかしい" },
+  "O quiz precisa de JavaScript ativado no navegador.": {
+    en: "The quiz needs JavaScript enabled in your browser.",
+    ja: "クイズを利用するには、ブラウザーのJavaScriptを有効にしてください。"
+  },
+  "Gostou? Isso é só o começo": { en: "Enjoyed it? This is just the beginning", ja: "楽しめましたか？ここからが本番です" },
+  "Nas aulas do PORPONÊS você vai muito além do quiz: hiragana, katakana, kanji, conversação e a cultura por trás de cada palavra, com professora nativa.": {
+    en: "PORPONÊS lessons take you far beyond the quiz: hiragana, katakana, kanji, conversation and the culture behind every word, with a native teacher.",
+    ja: "PORPONÊSのレッスンでは、ひらがな・カタカナ・漢字から会話、そして言葉の背景にある文化まで、ネイティブ講師と一緒に学べます。"
+  },
+  "Olá! Fiz o quiz no site do PORPONÊS e gostaria de saber mais sobre as aulas.": {
+    en: "Hello! I took the quiz on the PORPONÊS website and would like to know more about the lessons.",
+    ja: "こんにちは。PORPONÊSのサイトでクイズをしました。レッスンについて詳しく知りたいです。"
+  },
 
   /* ------------------------------------------------------------------------
      Escolas de idioma (escola-de-idioma.html)

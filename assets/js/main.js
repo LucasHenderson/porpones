@@ -420,6 +420,24 @@ const WHATSAPP_MESSAGES = {
       select: function () {
         tone({ freq: 880, dur: 0.07, gain: 0.04 });
         tone({ freq: 1320, dur: 0.1, gain: 0.04, delay: 0.06 });
+      },
+      /* quiz: resposta certa (arpejo maior, subindo) */
+      correct: function () {
+        tone({ freq: 784, dur: 0.1, gain: 0.05 });
+        tone({ freq: 988, dur: 0.1, gain: 0.05, delay: 0.08 });
+        tone({ freq: 1319, dur: 0.26, gain: 0.05, delay: 0.16 });
+      },
+      /* quiz: resposta errada (duas notas graves, descendo) */
+      wrong: function () {
+        tone({ freq: 233, to: 175, dur: 0.16, type: "sawtooth", gain: 0.035 });
+        tone({ freq: 175, to: 117, dur: 0.3, type: "sawtooth", gain: 0.03, delay: 0.14 });
+      },
+      /* quiz: fim da rodada (pequena fanfarra) */
+      finish: function (perfect) {
+        var notes = perfect ? [523, 659, 784, 1047] : [523, 659, 784];
+        notes.forEach(function (freq, i) {
+          tone({ freq: freq, dur: i === notes.length - 1 ? 0.34 : 0.12, gain: 0.045, delay: i * 0.1 });
+        });
       }
     };
 
@@ -461,11 +479,13 @@ const WHATSAPP_MESSAGES = {
   }
 
   /* Som de clique em botões e links comuns (links internos tocam o som de
-     navegação em initPageTransitions). */
+     navegação em initPageTransitions). Um elemento com o atributo
+     `data-no-click-sound` toca o próprio som (ex.: opções do quiz). */
   function initClickSounds() {
     document.addEventListener("click", function (e) {
       var el = e.target.closest("a, button");
       if (!el) return;
+      if (el.hasAttribute("data-no-click-sound") || el.closest("[data-no-click-sound]")) return;
       if (el.matches(".theme-toggle, .sound-toggle, .nav-toggle, .nav__close, .settings__btn, .lang-option, .nav__sub-toggle")) return;
       if (el.tagName === "A" && isInternalPageLink(el)) return;
       if (el.matches(".btn, .link-arrow, .social a, .brand, .nav__link, .nav__sub-link, button")) sound.play("click");
@@ -687,6 +707,10 @@ const WHATSAPP_MESSAGES = {
     forEach(candidates, function (el) {
       /* Evita animar um bloco dentro de outro que já anima */
       if (el.parentElement && el.parentElement.closest(".reveal")) return;
+      /* Slides do carrossel ficam fora da tela por causa da rolagem
+         horizontal: animá-los deixaria cards invisíveis até o visitante
+         clicar na seta. */
+      if (el.closest("[data-carousel], [data-quiz]")) return;
       var parent = el.parentElement;
       var group = null;
       for (var i = 0; i < perParent.length; i++) {
@@ -707,7 +731,142 @@ const WHATSAPP_MESSAGES = {
   }
 
   /* ------------------------------------------------------------------------
-     7. WHATSAPP, ANO NO RODAPÉ E FALLBACK DA LOGO
+     7. CARROSSEL (depoimentos da home)
+     Rolagem horizontal com scroll-snap: o CSS decide quantos cards cabem
+     por vez (1 no celular, 2 no tablet, 3 no desktop) e o JS só cuida das
+     setas, dos pontos e do teclado. Para acrescentar ou remover um card,
+     basta editar o HTML: nada aqui precisa mudar.
+     ------------------------------------------------------------------------ */
+  function initCarousel() {
+    forEach(document.querySelectorAll("[data-carousel]"), function (root) {
+      var viewport = root.querySelector("[data-carousel-viewport]");
+      var track = root.querySelector("[data-carousel-track]");
+      var prev = root.querySelector("[data-carousel-prev]");
+      var next = root.querySelector("[data-carousel-next]");
+      var dotsBox = root.querySelector("[data-carousel-dots]");
+      if (!viewport || !track) return;
+
+      var slides = track.children;
+      var dots = [];
+      var pages = 1;
+      var page = 0;
+      var frame = null;
+
+      /* Quantos cards cabem na janela do carrossel, a partir da largura real
+         de um card (definida pelo CSS, que muda por breakpoint). */
+      function perView() {
+        if (!slides.length) return 1;
+        var width = slides[0].getBoundingClientRect().width;
+        if (!width) return 1;
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return Math.max(1, Math.round((viewport.clientWidth + gap) / (width + gap)));
+      }
+
+      function pageWidth() {
+        return viewport.clientWidth;
+      }
+
+      function goTo(index, smooth) {
+        page = Math.max(0, Math.min(pages - 1, index));
+        var left = page * pageWidth();
+        if (viewport.scrollTo) {
+          viewport.scrollTo({ left: left, behavior: smooth && !reduceMotion.matches ? "smooth" : "auto" });
+        } else {
+          viewport.scrollLeft = left;
+        }
+        sync();
+      }
+
+      /* Atualiza setas e pontos conforme a posição da rolagem.
+         Se a quantidade de cards visíveis mudou (giro do celular, janela
+         redimensionada, fontes que só chegaram depois), refaz os pontos. */
+      function sync() {
+        if (Math.max(1, Math.ceil(slides.length / perView())) !== pages) layout();
+        var max = viewport.scrollWidth - viewport.clientWidth;
+        page = max > 1 ? Math.round(viewport.scrollLeft / pageWidth()) : 0;
+        page = Math.max(0, Math.min(pages - 1, page));
+        if (prev) prev.disabled = page === 0;
+        if (next) next.disabled = page >= pages - 1;
+        dots.forEach(function (dot, i) {
+          var active = i === page;
+          dot.setAttribute("aria-selected", active ? "true" : "false");
+          dot.setAttribute("tabindex", active ? "0" : "-1");
+        });
+      }
+
+      function buildDots() {
+        if (!dotsBox) return;
+        dotsBox.innerHTML = "";
+        dots = [];
+        if (pages < 2) return;
+        for (var i = 0; i < pages; i++) {
+          (function (index) {
+            var dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "carousel__dot";
+            dot.setAttribute("data-no-click-sound", "");
+            dot.setAttribute("role", "tab");
+            dot.setAttribute("aria-selected", "false");
+            dot.setAttribute("aria-label", String(index + 1));
+            dot.addEventListener("click", function () {
+              sound.play("tick");
+              goTo(index, true);
+            });
+            dotsBox.appendChild(dot);
+            dots.push(dot);
+          })(i);
+        }
+      }
+
+      function layout() {
+        var per = perView();
+        pages = Math.max(1, Math.ceil(slides.length / per));
+        root.classList.toggle("is-static", pages < 2);
+        buildDots();
+        sync();
+      }
+
+      if (prev) {
+        prev.addEventListener("click", function () {
+          sound.play("tick");
+          goTo(page - 1, true);
+        });
+      }
+      if (next) {
+        next.addEventListener("click", function () {
+          sound.play("tick");
+          goTo(page + 1, true);
+        });
+      }
+
+      viewport.addEventListener("scroll", function () {
+        if (frame) return;
+        frame = window.requestAnimationFrame(function () {
+          frame = null;
+          sync();
+        });
+      });
+
+      viewport.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+        e.preventDefault();
+        sound.play("tick");
+        goTo(page + (e.key === "ArrowRight" ? 1 : -1), true);
+      });
+
+      window.addEventListener("resize", function () {
+        window.clearTimeout(layout.timer);
+        layout.timer = window.setTimeout(layout, 150);
+      });
+
+      layout();
+      /* Refaz as contas quando fontes e imagens terminam de carregar */
+      window.addEventListener("load", layout);
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     8. WHATSAPP, ANO NO RODAPÉ E FALLBACK DA LOGO
      ------------------------------------------------------------------------ */
   function buildWhatsAppUrl(message) {
     var text = message && message.trim() ? message : WHATSAPP_MESSAGES[i18n.current] || WHATSAPP_MESSAGES.pt;
@@ -779,9 +938,25 @@ const WHATSAPP_MESSAGES = {
     initClickSounds();
     initPageTransitions();
     initReveal();
+    initCarousel();
     initYear();
     initLogoFallback();
   }
+
+  /* API mínima para os scripts de página (hoje, assets/js/quiz.js):
+     tocar os sons da interface e acompanhar o idioma escolhido. */
+  window.PORPONES = {
+    sound: sound,
+    get lang() {
+      return i18n.current;
+    },
+    onLangChange: function (fn) {
+      i18n.onChange(fn);
+    },
+    prefersReducedMotion: function () {
+      return !!reduceMotion.matches;
+    }
+  };
 
   try {
     if (document.body) init();

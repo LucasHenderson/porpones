@@ -17,10 +17,12 @@ intercambio.html              Intercâmbio
 escola-de-idioma.html         Escolas de idioma recomendadas
 jlpt.html                     JLPT
 working-holiday.html          Working Holiday (em breve)
-depoimentos.html              Depoimentos
+quiz.html                     Quiz de língua e cultura japonesa
 assets/css/style.css          Folha de estilos única (variáveis em :root, tema escuro, animações)
-assets/js/main.js             WhatsApp, painel de configurações (idioma, tema, sons), menu lateral, transições
+assets/js/main.js             WhatsApp, painel de configurações (idioma, tema, sons), menu lateral, transições, carrossel
 assets/js/translations.js     Traduções (inglês e japonês)
+assets/js/quiz-perguntas.js   As 45 perguntas do quiz (conteúdo: é aqui que se edita)
+assets/js/quiz.js             O jogo do quiz (sorteio, acerto/erro, resultado)
 assets/img/                   Logo, favicon e imagens
 assets/img/illus/             Ilustrações (irasutoya.com), uma por bloco do site
 ```
@@ -95,11 +97,11 @@ Resumo de onde há placeholders:
 
 | Página | Quantidade | Proporção |
 |---|---|---|
-| `index.html` | 3 avatares | 1:1 |
+| `index.html` | 6 avatares (carrossel de depoimentos) | 1:1 |
 | `viagem-tokyo.html`, `viagem-osaka.html`, `viagem-outras-cidades.html` | 10 cada | 4:3 |
 | `viagem-experiencias.html` | 11 | 4:3 |
 | `escola-de-idioma.html` | 2 (campus / estudantes) | 3:4 |
-| `depoimentos.html` | 6 avatares | 1:1 |
+| `quiz.html` | 45 ilustrações (ver "Quiz") | 4:3 |
 
 Os ícones dos 9 blocos do Working Holiday são SVG inline e não precisam de imagem. O hero da home, os 4 destinos de `viagem.html` e o bloco 16:9 do Working Holiday deixaram de ser fotos: agora usam ilustrações (seção abaixo).
 
@@ -139,13 +141,146 @@ Como os blocos são montados (CSS na seção "11. Ilustrações" de `style.css`)
 
 ### 4. Depoimentos reais
 
-Os depoimentos em `depoimentos.html` (e os 3 primeiros repetidos em `index.html`) são **exemplos fictícios**, marcados no código com um comentário:
+Os seis depoimentos do carrossel da home (`index.html`) são **exemplos fictícios**, marcados no código com um comentário:
 
 ```html
 <!-- ATENÇÃO: os depoimentos abaixo são PLACEHOLDERS de exemplo ... -->
 ```
 
 Para cada depoimento real, edite o card `.testimonial` (texto, nome, curso), **remova** o selo visual `<span class="badge badge--dev">exemplo</span>` e adicione a tradução do novo texto em `translations.js` (veja abaixo).
+
+Os cards ficam em um **carrossel**: 1 por vez no celular, 2 no tablet e 3 no desktop, com setas e pontos. Para acrescentar ou remover um depoimento, basta adicionar ou apagar um `<li class="carousel__slide">` dentro de `.carousel__track` — as setas e os pontos se ajustam sozinhos (`initCarousel()` em `main.js`, estilos na seção "12. Carrossel" de `style.css`).
+
+### 5. Quiz
+
+`quiz.html` é um jogo: o visitante escolhe a dificuldade (**fácil**, **médio** ou **difícil**) na barra do topo e responde a **3 perguntas sorteadas** entre as 15 daquele nível. Cada resposta mostra na hora se foi certa ou errada (com animação e som) e, no fim da rodada, a tela de resultado traz a resposta correta e uma breve explicação das 3 perguntas, além do botão **Jogar novamente**, que mantém a dificuldade escolhida.
+
+**As perguntas ficam em `assets/js/quiz-perguntas.js`** — é o único arquivo que precisa ser editado para mudar o conteúdo. São 45 perguntas (15 por nível), cada uma com as três versões de idioma já no próprio item:
+
+```js
+{
+  img: "",                       // caminho da ilustração (vazio = molde tracejado)
+  alt: "",                       // texto alternativo da imagem (opcional)
+  hint: "descrição da cena",     // a CENA do prompt de geração de imagem
+  correct: 1,                    // índice da resposta certa (0, 1, 2 ou 3)
+  pt: { q: "pergunta", a: ["A", "B", "C", "D"], why: "explicação" },
+  en: { ... },
+  ja: { ... }
+}
+```
+
+- `correct` conta **a partir de zero** (0 = primeira alternativa).
+- As 4 alternativas têm que estar na **mesma ordem** nos três idiomas; o quiz embaralha a ordem sozinho a cada rodada.
+- Dá para acrescentar ou remover perguntas à vontade: o quiz sempre sorteia 3 entre as que existirem no nível.
+- Os textos do jogo (botões, contador, mensagens de resultado) **não** ficam em `translations.js`: estão no objeto `UI` no início de `assets/js/quiz.js`, também nos três idiomas.
+
+**Ilustrações do quiz (pendente)**: enquanto `img` estiver vazio, a pergunta mostra um molde tracejado com o texto de `hint`. Para colocar a imagem, salve o arquivo em `assets/img/quiz/` e preencha `img: "assets/img/quiz/nome.png"`.
+
+#### Gerando as 45 ilustrações
+
+O campo `hint` de cada pergunta **já é a cena pronta para o prompt**: copie o texto e cole no lugar de `{{CENA}}` no template abaixo, sem precisar reescrever nada.
+
+```
+Ilustração vetorial plana (flat design) para um site educativo sobre o Japão.
+
+CENA: {{CENA}}
+
+IDENTIDADE — nunca muda de uma imagem para outra:
+- Vetor plano: cores chapadas, sem gradiente, sem textura, sem sombreamento
+  volumétrico, sem brilho.
+- Contorno de tinta escura #1c1b1f, uniforme: a MESMA espessura em todos os
+  elementos e em todas as imagens (cerca de 3px em uma imagem de 1024px de
+  largura). Cantos levemente arredondados.
+- Rosto sempre com a mesma gramática: olhos como pontos simples, boca como um
+  traço curto, sem nariz detalhado, sem bochechas coradas. Sobrancelhas finas
+  são permitidas. Expressão sutil, coerente com a cena, nunca exagerada.
+- Proporção corporal realista para a idade, nunca estilo chibi ou cabeçudo.
+- Aparência calma e sóbria, nada infantilizado.
+
+PALETA:
+- Contorno sempre #1c1b1f.
+- Toda imagem precisa ter pelo menos um detalhe em vermelho vermilhão #b23a2e,
+  nem que seja pequeno — é o fio que costura a coleção inteira.
+- Fora isso, escolha de 3 a 5 cores desta família, as que fizerem mais sentido
+  para o assunto da cena:
+  #2e4057 índigo · #7a9bb5 azul acinzentado · #46614c verde-musgo ·
+  #6b8f71 verde-chá · #c9a227 ocre · #e0bd6a mostarda clara ·
+  #cf7a52 terracota · #5c4a63 berinjela · #d9c9ae areia ·
+  #e8ded0 bege claro · #8c8880 cinza-pedra · #ffffff branco
+- Clareie ou escureça esses tons quando precisar de um intermediário.
+- Tudo terroso e dessaturado: nada de cor neon ou muito saturada.
+
+O QUE DEVE VARIAR conforme a cena:
+- A cor dominante nasce do assunto, não é sempre a mesma.
+- Enquadramento: figura inteira, meio corpo ou só o objeto em destaque.
+- Ângulo: frontal, três quartos, perfil ou visto de cima.
+- Pessoas: idade, tipo físico, cabelo e roupa variados. Tons de pele variados,
+  do bege claro ao castanho escuro, sempre chapados.
+- A escala do assunto pode ocupar de 60% a 85% da altura do quadro.
+
+COMPOSIÇÃO:
+- Assunto isolado e centralizado, inteiro dentro do quadro, com pelo menos 8%
+  de margem livre nas quatro bordas. Nada cortado nas bordas.
+- No máximo dois objetos de apoio que a cena exija, junto ao assunto.
+- Sem chão, sem paisagem, sem cenário ao fundo.
+- Proporção 4:3, paisagem.
+- Fundo 100% branco puro (#FFFFFF), liso: sem sombra no chão, sem moldura,
+  sem gradiente.
+
+NÃO INCLUIR:
+- Nenhum texto, letra, número, kanji, kana ou placa escrita.
+- Nada de fotorrealismo, 3D, aquarela, anime, mangá, pixel art ou traço de
+  quadrinhos.
+- Sem marca d'água, sem assinatura, sem logotipo.
+```
+
+O que mantém as 45 parecendo um conjunto é o **traço** — contorno de espessura fixa, mesmo nível de simplificação, mesma gramática de rosto — e o vermelho torii obrigatório em algum detalhe de cada imagem. Não é a paleta idêntica: travar as cores só deixa tudo monótono. Como cada geração é independente (o modelo não lembra das anteriores), a variação vem amarrada ao texto da cena: uma barraca de comida sai ocre e terracota, um escritório sai índigo e cinza, sem você escolher nada.
+
+**Travando o traço**: gere **uma** imagem primeiro e ajuste até gostar do resultado. Depois, anexe *essa sua imagem aprovada* como referência e use este prompt curto nas outras 44:
+
+```
+Use a imagem de referência anexada apenas como guia de TRAÇO: mesma espessura
+de contorno, mesmo nível de simplificação, mesmo tipo de rosto, mesma ausência
+de gradiente e mesmo fundo branco liso.
+
+NÃO copie a paleta da referência. Escolha cores novas para esta cena, dentro
+da mesma família terrosa e dessaturada, mantendo só o contorno #1c1b1f e pelo
+menos um detalhe em #b23a2e.
+
+CENA: {{CENA}}
+
+Mesmas regras: 4:3, assunto isolado e centralizado com margem, sem texto de
+nenhum tipo, sem sombra no chão.
+```
+
+O aviso de não copiar a paleta é essencial: sem ele o modelo reproduz as cores exatas da referência e devolve justamente a monotonia que o template principal evita.
+
+Duas decisões por trás das cenas escritas nos `hint`:
+
+- **Nenhuma tem texto dentro da figura.** Modelos de imagem erram kana com frequência e, como o site troca de idioma, um texto embutido na ilustração ficaria errado em inglês e japonês. O enunciado da pergunta já carrega o texto.
+- **Nenhuma entrega a resposta.** Onde a figura óbvia seria a própria resposta (a pergunta "o que é um torii?" com um torii desenhado, por exemplo), a cena é deliberadamente neutra — um turista olhando para cima, no caso.
+
+O prompt pede fundo branco porque é o que se recorta de forma limpa; passe as imagens por um removedor de fundo antes de salvá-las, para não aparecer um retângulo branco sobre o círculo do quiz (ver abaixo).
+
+**Tamanho e proporção das imagens do quiz**
+
+| | |
+|---|---|
+| Proporção | **4:3** (paisagem) |
+| Tamanho recomendado | **600 × 450 px** |
+| Mínimo | 400 × 300 px |
+| Formato | PNG com fundo transparente (ou WebP) |
+| Peso | até ~80 KB por imagem |
+
+O quadro da ilustração tem no máximo **300 px de largura** na tela (`.quiz__figure`, 300 × 225 px em 4:3), e encolhe junto com a tela no celular. Os 600 × 450 px recomendados são o dobro disso, para a figura não ficar borrada em telas retina.
+
+Não é obrigatório recortar tudo em 4:3: o CSS usa `object-fit: contain`, então **a imagem nunca é esticada nem cortada** — uma figura quadrada ou vertical só aparece centralizada dentro do quadro 4:3, com sobra nas laterais. O 4:3 é só o formato que preenche melhor o espaço.
+
+Fundo transparente é o ideal porque o quadro tem um círculo cinza-claro atrás da figura (`.quiz__figure::before`), que muda de cor no tema escuro. Uma imagem com fundo branco sólido apareceria como um retângulo por cima desse círculo.
+
+O espaço já fica reservado pelo CSS (`aspect-ratio: 4 / 3`), então o layout não "pula" enquanto a imagem carrega.
+
+> **Por que o quiz não usa o irasutoya**: a licença deles libera 20 ilustrações por obra e o site já usa 18 nos blocos das outras páginas (ver seção 3b). As 45 imagens do quiz precisam de outra origem — daí o estilo próprio descrito no template acima.
 
 ## Idiomas (português, inglês e japonês)
 
@@ -184,7 +319,7 @@ Um script inline no `<head>` de cada página aplica o tema e o idioma salvos ant
 
 ## Sons da interface
 
-Sons curtos e discretos, sintetizados com a Web Audio API (não há arquivos de áudio): clique em botões e links, troca de página, abrir/fechar o menu lateral, troca de tema e de idioma. O visitante pode desligar na linha "Sons da interface" do painel de configurações; a preferência fica salva (`porpones-sound`). Os sons só começam depois do primeiro clique, como os navegadores exigem. Volumes e frequências ficam na seção "SONS DA INTERFACE" de `main.js`.
+Sons curtos e discretos, sintetizados com a Web Audio API (não há arquivos de áudio): clique em botões e links, troca de página, abrir/fechar o menu lateral, troca de tema e de idioma, setas do carrossel e, no quiz, acerto (arpejo subindo), erro (duas notas graves) e fim da rodada (pequena fanfarra). O visitante pode desligar na linha "Sons da interface" do painel de configurações; a preferência fica salva (`porpones-sound`). Os sons só começam depois do primeiro clique, como os navegadores exigem. Volumes e frequências ficam na seção "SONS DA INTERFACE" de `main.js`.
 
 ## Animações
 
@@ -193,6 +328,8 @@ Sons curtos e discretos, sintetizados com a Web Audio API (não há arquivos de 
 - Menu lateral deslizante com fundo escurecido e itens em cascata; submenus abrem com altura animada; dropdowns do desktop com fade.
 - Só `opacity` e `transform` são animados (baratos para o navegador). Quem tem "reduzir movimento" ativado no sistema não vê animações nem o atraso na troca de página.
 - Na troca de tema, navegadores com View Transitions API mostram o novo tema se expandindo a partir do interruptor; os demais fazem uma transição de cores simples.
+- No quiz: a alternativa certa dá um "pulinho", a errada treme, e um carimbo ○ ou ✕ entra girando sobre a ilustração. O placar da tela final aparece crescendo.
+- O carrossel de depoimentos usa rolagem com `scroll-snap`; com "reduzir movimento" ativado ele salta direto para o card, sem deslizar.
 
 ## Menu lateral (mobile e tablet)
 
