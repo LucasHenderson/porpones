@@ -1,7 +1,7 @@
 # PORPONÊS: site estático
 
 Site institucional do PORPONÊS (curso de língua japonesa online), em **HTML + CSS + JavaScript puro**, sem build step.
-Abra `index.html` direto no navegador (duplo clique) ou publique a pasta inteira em qualquer hosting estático (Netlify, GitHub Pages, Vercel, hospedagem compartilhada etc.).
+Abra `index.html` direto no navegador (duplo clique) ou publique a pasta inteira em qualquer hosting estático. Hoje ele é publicado pelo Cloudflare (ver "Publicação").
 
 ## Estrutura
 
@@ -25,7 +25,24 @@ assets/js/quiz-perguntas.js   As 45 perguntas do quiz (conteúdo: é aqui que se
 assets/js/quiz.js             O jogo do quiz (sorteio, acerto/erro, resultado)
 assets/img/                   Logo, favicon e imagens
 assets/img/illus/             Ilustrações (irasutoya.com), uma por bloco do site
+assets/img/<pasta>/           Fotos de cada página (tokyo, osaka, outras-cidades, experiencias-culturais, intercambio)
+wrangler.jsonc                Configuração do Cloudflare (site estático, sem build)
+.assetsignore                 Arquivos do repositório que não são publicados no site
 ```
+
+## Publicação (Cloudflare)
+
+O site é publicado pelo Cloudflare a partir deste repositório do GitHub: cada `git push` na branch `main` gera um deploy novo automaticamente.
+
+- `wrangler.jsonc` diz ao Cloudflare que o projeto é só de arquivos estáticos (sem build e sem servidor). O campo `name` precisa ser igual ao nome do projeto criado no painel (`porpones`).
+- `.assetsignore` lista o que fica fora do site publicado (README, arquivos de configuração, fotos originais).
+- `.gitignore` deixa as **fotos originais** em alta resolução (`.jpg`/`.png` das pastas de fotos, até 14 MB cada) só no computador. O site usa as versões `.webp` otimizadas da mesma pasta. Ao adicionar uma foto nova, gere também o `.webp` (cerca de 1200×900 px) e use ele no HTML.
+
+Configuração no painel do Cloudflare (**Workers & Pages → Create → Import a repository**): nome do projeto `porpones`, *build command* vazio, *deploy command* `npx wrangler deploy` (o padrão). O endereço fica `https://porpones.<sua-conta>.workers.dev`.
+
+Pelo **Cloudflare Pages** também funciona: *framework preset* `None`, *build command* vazio, *build output directory* `/`. Nesse caso o `wrangler.jsonc` é ignorado.
+
+Nos dois casos, os endereços ficam sem `.html` (`/cursos.html` redireciona para `/cursos`), e os links do site continuam funcionando.
 
 ## Antes de publicar: checklist
 
@@ -93,15 +110,9 @@ Substitua o bloco inteiro por uma imagem real com a mesma proporção:
 
 Coloque as fotos em `assets/img/`. Nomes de arquivo sem espaços ou acentos. Ao remover um placeholder, a entrada dele em `translations.js` pode ser apagada (ou deixada; entradas não usadas não atrapalham).
 
-Resumo de onde há placeholders:
+Placeholders que ainda restam: os **6 avatares** do carrossel de depoimentos em `index.html` (1:1).
 
-| Página | Quantidade | Proporção |
-|---|---|---|
-| `index.html` | 6 avatares (carrossel de depoimentos) | 1:1 |
-| `viagem-tokyo.html`, `viagem-osaka.html`, `viagem-outras-cidades.html` | 10 cada | 4:3 |
-| `viagem-experiencias.html` | 11 | 4:3 |
-| `escola-de-idioma.html` | 2 (campus / estudantes) | 3:4 |
-| `quiz.html` | 45 ilustrações (ver "Quiz") | 4:3 |
+Já têm fotos reais (`.webp` em `assets/img/<pasta>/`): os cards de `viagem-tokyo.html`, `viagem-osaka.html`, `viagem-outras-cidades.html` e `viagem-experiencias.html` (4:3, 1200×900 px), as 2 escolas de `escola-de-idioma.html` (3:4, 600×800 px) e as 45 ilustrações do quiz.
 
 Os ícones dos 9 blocos do Working Holiday são SVG inline e não precisam de imagem. O hero da home, os 4 destinos de `viagem.html` e o bloco 16:9 do Working Holiday deixaram de ser fotos: agora usam ilustrações (seção abaixo).
 

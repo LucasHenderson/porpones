@@ -205,6 +205,28 @@ h4 {
   margin: 0 0 var(--space-4);
   color: var(--color-ink);
   letter-spacing: 0.005em;
+  /* Linhas de tamanho parecido: evita uma palavra sozinha no fim */
+  text-wrap: balance;
+}
+
+/* Japonês não tem espaços: sem quebra por frase, o "balance" cortaria
+   palavras ao meio (日／本語). Só equilibra onde o navegador sabe quebrar
+   por frase (word-break: auto-phrase; Chrome e Edge). */
+h1:lang(ja),
+h2:lang(ja),
+h3:lang(ja),
+h4:lang(ja) {
+  text-wrap: wrap;
+}
+
+@supports (word-break: auto-phrase) {
+  h1:lang(ja),
+  h2:lang(ja),
+  h3:lang(ja),
+  h4:lang(ja) {
+    word-break: auto-phrase;
+    text-wrap: balance;
+  }
 }
 
 h1 {
@@ -1467,7 +1489,9 @@ body.nav-open .nav-backdrop {
 
 /* Imagem real no lugar do placeholder de um card de destino/experiência */
 .card--place .card__img {
-  width: auto;
+  width: calc(100% + var(--space-5) * 2);
+  max-width: none;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   margin: calc(var(--space-5) * -1) calc(var(--space-5) * -1) var(--space-2);
@@ -1478,6 +1502,7 @@ body.nav-open .nav-backdrop {
 /* Imagem real genérica (hero, destinos, escolas): mesma moldura do placeholder */
 .img-real {
   width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: var(--radius-lg);
 }
@@ -2233,6 +2258,10 @@ body.nav-open .nav-backdrop {
 .school {
   display: grid;
   gap: var(--space-5);
+}
+
+.school__img {
+  aspect-ratio: 3 / 4;
 }
 
 .school__body h3 {

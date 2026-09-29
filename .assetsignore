@@ -1,0 +1,16 @@
+# Arquivos do repositório que não devem ser publicados como parte do site
+.git
+.gitignore
+.assetsignore
+.wrangler
+node_modules
+wrangler.jsonc
+README.md
+
+# Fotos originais (o site usa as versões .webp)
+assets/img/tokyo/*.jpg
+assets/img/osaka/*.jpg
+assets/img/outras-cidades/*.jpg
+assets/img/experiencias-culturais/*.jpg
+assets/img/intercambio/*.jpg
+assets/img/intercambio/*.png

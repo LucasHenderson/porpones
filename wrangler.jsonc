@@ -1,0 +1,11 @@
+// Configuração do Cloudflare Workers: publica a pasta do projeto como site
+// estático, sem build e sem código de servidor. Arquivos que não fazem parte
+// do site (README, esta configuração etc.) são listados em .assetsignore.
+// O "name" precisa ser igual ao nome do projeto criado no painel do Cloudflare.
+{
+  "name": "porpones",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "."
+  }
+}
