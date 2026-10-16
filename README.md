@@ -69,13 +69,13 @@ Enquanto o número for o placeholder, o console do navegador exibe um aviso.
 ### 2. Logo
 
 A logo está em `assets/img/logo.png` (fundo transparente, traço escuro), usada no header e no hero da home.
-Variantes geradas a partir do arquivo original:
+É a mesma logo da plataforma de estudo do PORPONÊS (projeto `porpones-game-site`, pasta `public/`), na versão só com o símbolo (`logo-mark`), já que o nome aparece em texto ao lado:
 
-- `assets/img/logo.png`: versão principal (fundo transparente, traço escuro)
-- `assets/img/logo-white.png`: versão branca, usada no rodapé e no tema escuro (header e hero)
-- `assets/img/logo-original.jpg`: cópia do arquivo original recebido (referência)
+- `assets/img/logo.png`: versão principal (fundo transparente, traço escuro), cópia de `logo-mark.png`
+- `assets/img/logo-white.png`: versão branca, usada no rodapé e no tema escuro (header e hero), cópia de `logo-mark-white.png`
+- `assets/img/logo-original.jpg`: cópia do arquivo original da logo, com o nome (referência)
 
-**Favicon**: para ter contraste em qualquer aba (clara ou escura), o ícone mantém o disco branco da logo original, com o lado de fora transparente. Os arquivos, gerados a partir de `logo-original.jpg`, são referenciados no `<head>` de todas as páginas:
+**Favicon**: os ícones também vêm da plataforma de estudo e são referenciados no `<head>` de todas as páginas:
 
 - `assets/img/favicon.ico` (16/32/48 px, navegadores antigos)
 - `assets/img/favicon-32.png` (aba do navegador)

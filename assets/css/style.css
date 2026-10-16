@@ -2487,6 +2487,31 @@ body.nav-open .nav-backdrop {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Crédito do desenvolvedor, abaixo do copyright */
+.site-footer__credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.site-footer__credit a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.site-footer__credit svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
 /* --------------------------------------------------------------------------
    11. Ilustrações (PNG transparentes, ex.: irasutoya.com)
    Substitua o arquivo em assets/img/illus/ mantendo o nome para trocar a

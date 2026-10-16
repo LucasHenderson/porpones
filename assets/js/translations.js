@@ -67,6 +67,7 @@ window.PORPONES_TRANSLATIONS = {
     en: "Lessons Monday to Friday, 8 am to 10 pm (Brasília time).",
     ja: "レッスンは月曜〜金曜、8時〜22時（ブラジリア時間）。"
   },
+  "Desenvolvido por Lucas Henderson": { en: "Developed by Lucas Henderson", ja: "サイト制作：Lucas Henderson" },
   "Você está em": { en: "You are here", ja: "現在地" },
   "Em breve": { en: "Coming soon", ja: "近日公開" },
   "Tirar dúvidas no WhatsApp": { en: "Ask on WhatsApp", ja: "WhatsAppで質問する" },
